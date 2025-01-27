@@ -16,3 +16,9 @@ export type AddOn = {
     price: number
 }
 
+export type MultiStepsFormType = {
+    step1: PersonalInfo,
+    step2: Plan,
+    step3: AddOn[]
+}
+
