@@ -3,11 +3,13 @@ import { PersonalInfoForm } from './PersonalInfoForm';
 import { useMultiSteps } from '../hooks/useMultiSteps';
 import { PlanSelectorForm } from './PlanSelectorForm';
 import { Card } from './Card';
+import { AddOnsForm } from './AddOnsForm';
 
 export const StepsManager = () => {
     const {nextStep, prevStep, step} = useMultiSteps();
     const personFormRef = useRef<{ validateInputs: () => boolean } | null>(null)
     const planFormRef = useRef<{ validateInputs: () => boolean } | null>(null)
+    const addonsFormRef = useRef<{ validateInputs: () => boolean } | null>(null)
     const validate = () => {
         switch(step){
             case 0:
@@ -41,6 +43,11 @@ export const StepsManager = () => {
             {
                 step==1 && <Card name='Select your plan' description='You have the option of monthly or yearly billing.'>
                     <PlanSelectorForm ref={planFormRef}/>
+                </Card>
+            }
+            {
+                step==2 && <Card name='Pick add-ons' description='Add-ons help enhance your gaming experience.'>
+                    <AddOnsForm ref={addonsFormRef}/>
                 </Card>
             }
             <button onClick={()=>validate()}
