@@ -16,8 +16,8 @@ export const useMultiSteps = () => {
     const setMonthlyPlan = (m :boolean) => { 
         if(m == monthly)
             return;
-
-        setMonthly(monthly);
+    
+        setMonthly(m);
     }
     const setPersonInfo = (p :PersonalInfo)=>{
         setMultiStepsState(prev => ({...prev, step1: p}));
