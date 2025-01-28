@@ -1,11 +1,11 @@
-import { forwardRef, useImperativeHandle } from 'react'
+import { forwardRef, useContext, useImperativeHandle } from 'react'
 
 import { plans } from '../data';
-import { useMultiSteps } from '../hooks/useMultiSteps';
+import { MultiStepContext } from '../context/MultiStepsProvider';
 
 export const PlanSelectorForm = forwardRef(({},ref) => {
 
-    const {monthly, setMonthlyPlan, setPlanSelected} = useMultiSteps()
+    const {monthly, setMonthlyPlan, setPlanSelected} = useContext(MultiStepContext)
 
     const validateInputs = ()=>{
         return true;
