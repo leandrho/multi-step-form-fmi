@@ -1,36 +1,46 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { PersonalInfoForm } from './PersonalInfoForm';
-import { useMultiSteps } from '../hooks/useMultiSteps';
 import { PlanSelectorForm } from './PlanSelectorForm';
 import { Card } from './Card';
 import { AddOnsForm } from './AddOnsForm';
+import { FinishingUpForm } from './FinishingUpForm';
+import { MultiStepContext } from '../context/MultiStepsProvider';
+import { Message } from './Message';
 
 export const StepsManager = () => {
-    const {nextStep, prevStep, step} = useMultiSteps();
+    const {nextStep, prevStep, step} = useContext(MultiStepContext);
     const personFormRef = useRef<{ validateInputs: () => boolean } | null>(null)
     const planFormRef = useRef<{ validateInputs: () => boolean } | null>(null)
     const addonsFormRef = useRef<{ validateInputs: () => boolean } | null>(null)
+    const finishFormRef = useRef<{ validateInputs: () => boolean } | null>(null)
     const validate = () => {
         switch(step){
             case 0:
                 if(personFormRef.current){
                     if(personFormRef.current.validateInputs())
-                        console.log('VALIDO.. DO NEXT')
-                    else
-                        console.log('NO VALIDO NO NEXT..')
+                        nextStep();
                 }
                 break;
             case 1:
                 if(planFormRef.current){
                     if(planFormRef.current.validateInputs())
-                        console.log('PLAN VALIDO.. DO NEXT STEP 2')
-                    else
-                        console.log('PLAN NO VALIDO NO NEXT.. STEP 2')
+                        nextStep();
+                }
+                break;
+            case 2:
+                if(addonsFormRef.current){
+                    if(addonsFormRef.current.validateInputs())
+                        nextStep();
+                }
+                break;
+            case 3:
+                if(finishFormRef.current){
+                    if(finishFormRef.current.validateInputs())
+                        nextStep();
                 }
                 break;
         }
-        nextStep();
-  
+
     }
     return (
         <section className='flex flex-col justify-end gap-4 items-end'>
@@ -50,12 +60,30 @@ export const StepsManager = () => {
                     <AddOnsForm ref={addonsFormRef}/>
                 </Card>
             }
-            <button onClick={()=>validate()}
-                className='px-8 py-2 bg-black rounded-md text-white mx-4 hover:bg-gray-700 cursor-pointer'
-            >Next</button>
-             <button onClick={()=>prevStep()}
-                className='px-8 py-2 bg-black rounded-md text-white mx-4 hover:bg-gray-700 cursor-pointer'
-            >Prev</button>
+            {
+                step==3 && <Card name='Finishing up' description='Double-check everything looks OK before confirming.'>
+                    <FinishingUpForm ref={finishFormRef}/>
+                </Card>
+            }
+             {
+                step==4 && <Card name='' description=''>
+                    <Message />
+                </Card>
+            }
+            <div className='flex justify-between w-full'>
+                <button onClick={()=>prevStep()}
+                    className='px-8 py-2 bg-black rounded-md text-white mx-4 hover:bg-gray-700 cursor-pointer'
+                >
+                    Prev
+                </button>
+                <button onClick={()=>validate()}
+                    className='px-8 py-2 bg-black rounded-md text-white mx-4 hover:bg-gray-700 cursor-pointer'
+                >
+                    {step!==3?'Next':'Confirm'}
+                </button>
+               
+            </div>
+            
         </section>
     )
 }
