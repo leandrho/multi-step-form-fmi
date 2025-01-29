@@ -28,6 +28,12 @@ export const useMultiSteps = () => {
     const setAddOns = (addOns :AddOn[])=>{
         setMultiStepsState(prev=>({...prev,step3: addOns}));
     }
+    const addAddOn = (addOn :AddOn)=>{
+        setMultiStepsState(prev=>({...prev,step3: [...prev.step3, addOn]}));
+    }
+    const deleteAddOn = (addOn :AddOn)=>{
+        setMultiStepsState(prev=>({...prev,step3: prev.step3.filter((a)=>a.name!==addOn.name)}));
+    }
     const nextStep = () => {
         if(step < 4)
             setStep(prev=>prev+1)
@@ -47,6 +53,7 @@ export const useMultiSteps = () => {
         setMonthlyPlan,
         setPersonInfo,
         setPlanSelected,
-        setAddOns
+        addAddOn,
+        deleteAddOn
     }
 }

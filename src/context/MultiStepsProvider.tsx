@@ -16,6 +16,8 @@ type MultStepContextType = {
     setMonthlyPlan: (m:boolean)=>void,
     setPersonInfo: (p:PersonalInfo)=>void
     setPlanSelected: (p:Plan)=>void
+    addAddOn: (a:AddOn)=>void
+    deleteAddOn: (a:AddOn)=>void
 
 }
 export const MultiStepContext = createContext({} as MultStepContextType);
