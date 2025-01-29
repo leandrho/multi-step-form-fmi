@@ -10,9 +10,6 @@ import { Message } from './Message';
 export const StepsManager = () => {
     const {nextStep, prevStep, step} = useContext(MultiStepContext);
     const personFormRef = useRef<{ validateInputs: () => boolean } | null>(null)
-    const planFormRef = useRef<{ validateInputs: () => boolean } | null>(null)
-    const addonsFormRef = useRef<{ validateInputs: () => boolean } | null>(null)
-    const finishFormRef = useRef<{ validateInputs: () => boolean } | null>(null)
     const validate = () => {
         switch(step){
             case 0:
@@ -22,22 +19,9 @@ export const StepsManager = () => {
                 }
                 break;
             case 1:
-                if(planFormRef.current){
-                    if(planFormRef.current.validateInputs())
-                        nextStep();
-                }
-                break;
             case 2:
-                if(addonsFormRef.current){
-                    if(addonsFormRef.current.validateInputs())
-                        nextStep();
-                }
-                break;
             case 3:
-                if(finishFormRef.current){
-                    if(finishFormRef.current.validateInputs())
-                        nextStep();
-                }
+                nextStep();
                 break;
         }
 
@@ -52,17 +36,17 @@ export const StepsManager = () => {
             }
             {
                 step==1 && <Card name='Select your plan' description='You have the option of monthly or yearly billing.'>
-                    <PlanSelectorForm ref={planFormRef}/>
+                    <PlanSelectorForm />
                 </Card>
             }
             {
                 step==2 && <Card name='Pick add-ons' description='Add-ons help enhance your gaming experience.'>
-                    <AddOnsForm ref={addonsFormRef}/>
+                    <AddOnsForm />
                 </Card>
             }
             {
                 step==3 && <Card name='Finishing up' description='Double-check everything looks OK before confirming.'>
-                    <FinishingUpForm ref={finishFormRef}/>
+                    <FinishingUpForm />
                 </Card>
             }
              {

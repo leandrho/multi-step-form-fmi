@@ -1,18 +1,11 @@
-import { forwardRef, useContext, useImperativeHandle } from "react"
+import { useContext } from "react"
 import { addons } from "../data";
 
 import { MultiStepContext } from "../context/MultiStepsProvider";
 import { AddOn } from "../types";
 
-export const AddOnsForm = forwardRef(({},ref) => {
+export const AddOnsForm = () => {
     const { monthly, addOns, addAddOn, deleteAddOn } = useContext(MultiStepContext);
-    const validateInputs = () :boolean => {
-        console.log('VALIDANDO AddOnsss INFO..');
-        return true;
-    }
-    useImperativeHandle(ref,()=>({
-        validateInputs
-    }))
     const handleChange = ( a :AddOn )=>{
         if(addOns.some((ad)=>ad.name==a.name))
             deleteAddOn(a);
@@ -42,4 +35,4 @@ export const AddOnsForm = forwardRef(({},ref) => {
             }
         </div>
     )
-});
+};

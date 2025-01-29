@@ -1,18 +1,11 @@
-import { forwardRef, useContext, useImperativeHandle } from 'react'
+import { useContext } from 'react'
 import { MultiStepContext } from '../context/MultiStepsProvider';
 
 
-export const FinishingUpForm = forwardRef(({},ref) => {
+export const FinishingUpForm = () => {
 
     const { plan, monthly, addOns, jumpStep } = useContext(MultiStepContext);
-
-    const validateInputs = () :boolean => {
-        console.log('VALIDANDO Finishing up..');
-        return true;
-    }
-    useImperativeHandle(ref, ()=>({
-        validateInputs
-    }));
+;
     const calculateTotal = ()=>{
       let total = 0;
       addOns.forEach((a)=>total+=a.price);
@@ -49,4 +42,4 @@ export const FinishingUpForm = forwardRef(({},ref) => {
         </div>
       </div>
     )
-})
+}

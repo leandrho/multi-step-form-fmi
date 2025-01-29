@@ -1,17 +1,11 @@
-import { forwardRef, useContext, useEffect, useImperativeHandle } from 'react'
+import { useContext, useEffect } from 'react'
 
 import { plans } from '../data';
 import { MultiStepContext } from '../context/MultiStepsProvider';
 
-export const PlanSelectorForm = forwardRef(({},ref) => {
+export const PlanSelectorForm = () => {
 
     const {monthly, setMonthlyPlan, setPlanSelected, plan:curPlan} = useContext(MultiStepContext)
-    const validateInputs = ()=>{
-        return true;
-    }
-    useImperativeHandle(ref,()=>({
-        validateInputs
-    }));
     useEffect(() => {
         if(curPlan.name=='')//el plan del state debe poder ser null, para evitar la comparacion con name vacio..
             setPlanSelected(plans[0])
@@ -52,4 +46,4 @@ export const PlanSelectorForm = forwardRef(({},ref) => {
                 </div>
             </div>
     )
-});
+};
