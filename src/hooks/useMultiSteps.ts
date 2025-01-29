@@ -6,7 +6,7 @@ const initialState :MultiStepsFormType = {
     step2: {name: '', price: 0, freeMonthsYearly: 0, icon:''},
     step3: []
 }
-
+const MAXSTEPS :number = 5;
 export const useMultiSteps = () => {
     
     const [multiStepsState, setMultiStepsState] = useState<MultiStepsFormType>(initialState);
@@ -25,9 +25,6 @@ export const useMultiSteps = () => {
     const setPlanSelected = (p:Plan)=>{
         setMultiStepsState(prev => ({...prev, step2: p}));
     }
-    const setAddOns = (addOns :AddOn[])=>{
-        setMultiStepsState(prev=>({...prev,step3: addOns}));
-    }
     const addAddOn = (addOn :AddOn)=>{
         setMultiStepsState(prev=>({...prev,step3: [...prev.step3, addOn]}));
     }
@@ -35,17 +32,22 @@ export const useMultiSteps = () => {
         setMultiStepsState(prev=>({...prev,step3: prev.step3.filter((a)=>a.name!==addOn.name)}));
     }
     const nextStep = () => {
-        if(step < 4)
+        if(step < MAXSTEPS)
             setStep(prev=>prev+1)
     }
     const prevStep = () => {
         if(step > 0)
             setStep(prev=>prev-1)
     }
+    const jumpStep = (s:number) => {
+        if(s >= 0 && s < MAXSTEPS)
+            setStep(s)
+    }
     return {
         step,
         nextStep,
         prevStep,
+        jumpStep,
         monthly,
         personalInfo :multiStepsState.step1,
         plan :multiStepsState.step2,

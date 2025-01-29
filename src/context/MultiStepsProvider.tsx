@@ -8,6 +8,7 @@ type MultStepContextType = {
     step: number,
     prevStep: ()=>void,
     nextStep: ()=>void,
+    jumpStep: (s:number)=>void,
     monthly: boolean,
 
     personalInfo: PersonalInfo
