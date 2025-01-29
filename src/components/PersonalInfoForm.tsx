@@ -1,6 +1,5 @@
 
-import { forwardRef, useEffect, useImperativeHandle } from "react"
-import { useMultiSteps } from "../hooks/useMultiSteps"
+import { forwardRef, useImperativeHandle } from "react"
 
 type PersonalInfoFormProps = {
 
@@ -26,16 +25,16 @@ export const PersonalInfoForm = forwardRef(({  } :PersonalInfoFormProps, ref) =>
                 />
             </div>
             <div className="">
-                <label htmlFor="person-name" className="text-sm">Email Address</label>{/*'need to use useID in the input field if you want to re-use the component..'*/}
-                <input id="person-name" 
+                <label htmlFor="person-email" className="text-sm">Email Address</label>{/*'need to use useID in the input field if you want to re-use the component..'*/}
+                <input id="person-email" 
                     type="email" 
                     placeholder="e.g. stephenking@lorem.com" 
                     className=" block w-full font-medium outline-hidden border rounded-sm px-4 py-2 "
                 />
             </div>
             <div className="">
-                <label htmlFor="person-name" className="text-sm">Phone Number</label>{/*'need to use useID in the input field if you want to re-use the component..'*/}
-                <input id="person-name" 
+                <label htmlFor="person-phone" className="text-sm">Phone Number</label>{/*'need to use useID in the input field if you want to re-use the component..'*/}
+                <input id="person-phone" 
                     type="text" 
                     placeholder="e.g. +1 234 567 890" 
                     className=" block w-full font-medium outline-hidden border rounded-sm px-4 py-2"

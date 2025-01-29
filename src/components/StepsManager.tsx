@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { PersonalInfoForm } from './PersonalInfoForm';
 import { useMultiSteps } from '../hooks/useMultiSteps';
 import { PlanSelectorForm } from './PlanSelectorForm';
@@ -53,6 +53,9 @@ export const StepsManager = () => {
             <button onClick={()=>validate()}
                 className='px-8 py-2 bg-black rounded-md text-white mx-4 hover:bg-gray-700 cursor-pointer'
             >Next</button>
+             <button onClick={()=>prevStep()}
+                className='px-8 py-2 bg-black rounded-md text-white mx-4 hover:bg-gray-700 cursor-pointer'
+            >Prev</button>
         </section>
     )
 }

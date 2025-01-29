@@ -5,7 +5,7 @@ import { MultiStepContext } from '../context/MultiStepsProvider';
 
 export const PlanSelectorForm = forwardRef(({},ref) => {
 
-    const {monthly, setMonthlyPlan, setPlanSelected} = useContext(MultiStepContext)
+    const {monthly, setMonthlyPlan, setPlanSelected, plan:curPlan} = useContext(MultiStepContext)
 
     const validateInputs = ()=>{
         return true;
@@ -20,7 +20,7 @@ export const PlanSelectorForm = forwardRef(({},ref) => {
                     {
                     plans.map((plan, index)=>(
                         <label htmlFor={plan.name} key={plan.name} className='flex  gap-4 p-4 border border-gray-300 rounded-lg has-checked:border-gray-800 has-checked:bg-gray-100' >
-                            <input type="radio" name='plan' id={plan.name} className='hidden' defaultChecked={index==0} onChange={()=>setPlanSelected(plan)}/>
+                            <input type="radio" name='plan' id={plan.name} className='hidden' defaultChecked={ curPlan.name==plan.name || (index==0 && !curPlan.name) } onChange={()=>setPlanSelected(plan)}/>
                             <figure>
                                 <img src={plan.icon} alt="icon of plan" />
                             </figure>
@@ -41,7 +41,7 @@ export const PlanSelectorForm = forwardRef(({},ref) => {
                         <label htmlFor="monoryear" aria-label='select monthly or yearly'
                             className='absolute top-[50%] left-1 translate-y-[-50%] w-3 h-3 rounded-full bg-white  has-checked:translate-x-[21px] transition-all'
                         >
-                            <input id='monoryear' type="checkbox" onChange={()=>setMonthlyPlan(!monthly)} className='hidden'/>
+                            <input id='monoryear' type="checkbox" onChange={()=>setMonthlyPlan(!monthly)} checked={!monthly} className='hidden'/>
                         </label>
                     </div>
                     <p className={`${!monthly?'text-blue-500':'text-gray-400'}`}>Yearly</p>

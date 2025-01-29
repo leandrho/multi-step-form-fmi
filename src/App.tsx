@@ -1,8 +1,11 @@
+import { StepsManager } from './components/StepsManager';
 
 function App() {
   return (
     <>
-        <h1 className="text-red-400 text-5xl">Multi Step Form</h1>
+    <div className='bg-gray-300 h-screen w-full flex justify-center items-center'>
+        <StepsManager />
+    </div>
     </>
   )
 }
