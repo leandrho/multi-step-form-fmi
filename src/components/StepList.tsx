@@ -14,7 +14,7 @@ type StepListProps = {
 export const StepList = ({personFormRef}:StepListProps) => {
     const {step} = useContext(MultiStepContext)
   return (
-    <div className="">
+    <div className="flex justify-center transition-all">
         {
                 step==0 && <Card name='Personal info' description='Please provide your name, email address, and phone number.'>
                     <PersonalInfoForm ref={personFormRef} /> 
