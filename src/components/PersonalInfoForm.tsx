@@ -54,12 +54,12 @@ export const PersonalInfoForm = forwardRef(({  } :PersonalInfoFormProps, ref) =>
            
     }    
     return (
-        <div className="flex flex-col gap-4">        
+        <div className="flex flex-col gap-4 md:mt-6">        
             <div className="parent">
                 <div className="flex justify-between items-center">
-                    <label htmlFor="person-name" className="text-sm">Name</label>{/*'need to use useID in the input field if you want to re-use the component..'*/}
+                    <label htmlFor="person-name" className="text-sm text-(--Marine-blue)">Name</label>{/*'need to use useID in the input field if you want to re-use the component..'*/}
                     {
-                        errors.name && <p className="text-red-400 text-xs font-medium">This field is required</p>
+                        errors.name && <p className="text-(--Strawberry-red) text-xs font-medium">This field is required</p>
                     }
                 </div>
                 <input 
@@ -67,39 +67,39 @@ export const PersonalInfoForm = forwardRef(({  } :PersonalInfoFormProps, ref) =>
                     id="person-name" 
                     type="text" 
                     placeholder="e.g. Stephen King" 
-                    className=" block w-full font-medium outline outline-gray-400  rounded-sm px-4 py-2 "
+                    className=" mt-1 text-(--Marine-blue) block w-full font-medium outline outline-(--Light-gray) hover:outline-(--Purplish-blue) focus:outline-(--Purplish-blue)  rounded-sm px-4 py-2 placeholder:text-(--Cool-gray) placeholder:text-[15px]"
                     value={personalInfo.name}
                     onChange={(e)=>handleChange(e)}
                 />
             </div>
             <div className="parent">
                 <div className="flex justify-between items-center">
-                    <label htmlFor="person-email" className="text-sm">Email Address</label>{/*'need to use useID in the input field if you want to re-use the component..'*/}
+                    <label htmlFor="person-email" className="text-sm text-(--Marine-blue)">Email Address</label>{/*'need to use useID in the input field if you want to re-use the component..'*/}
                         {
-                            errors.email ? <p className="text-red-400 text-xs font-medium">This field is required</p> :''
+                            errors.email ? <p className="text-(--Strawberry-red) text-xs font-medium">This field is required</p> :''
                         }
                 </div>
                 <input id="person-email" 
                     ref={emailRef}
                     type="email" 
                     placeholder="e.g. stephenking@lorem.com" 
-                    className=" block w-full font-medium outline outline-gray-400 rounded-sm px-4 py-2 "
+                    className="mt-1 text-(--Marine-blue) block w-full font-medium outline outline-(--Light-gray) hover:outline-(--Purplish-blue) focus:outline-(--Purplish-blue)   rounded-sm px-4 py-2 placeholder:text-(--Cool-gray) placeholder:text-[15px]"
                     value={personalInfo.email}
                     onChange={(e)=>handleChange(e)}
                 />
             </div>
             <div className="parent">
                 <div className="flex justify-between items-center">
-                <label htmlFor="person-phone" className="text-sm">Phone Number</label>{/*'need to use useID in the input field if you want to re-use the component..'*/}
+                <label htmlFor="person-phone" className="text-sm text-(--Marine-blue)">Phone Number</label>{/*'need to use useID in the input field if you want to re-use the component..'*/}
                         {
-                            errors.phone ? <p className="text-red-400 text-xs font-medium">This field is required</p>:''
+                            errors.phone ? <p className="text-(--Strawberry-red) text-xs font-medium">This field is required</p>:''
                         }
                 </div>
                 <input id="person-phone"
                     ref={phoneRef} 
                     type="text" 
                     placeholder="e.g. +1 234 567 890" 
-                    className=" block w-full font-medium outline outline-gray-400 rounded-sm px-4 py-2"
+                    className="mt-1 text-(--Marine-blue) block w-full font-medium outline outline-(--Light-gray) hover:outline-(--Purplish-blue) focus:outline-(--Purplish-blue)  rounded-sm px-4 py-2 placeholder:text-(--Cool-gray) placeholder:text-[15px]"
                     value={personalInfo.phone}
                     onChange={(e)=>handleChange(e)}
                 />
