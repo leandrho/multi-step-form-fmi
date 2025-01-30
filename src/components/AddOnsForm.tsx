@@ -13,10 +13,10 @@ export const AddOnsForm = () => {
             addAddOn(a);
     }
     return (
-        <div className="flex flex-col gap-4 ">
+        <div className="flex flex-col gap-4 md:mt-4">
             {
                 addons.map((addon)=>(
-                    <div key={addon.name} className="flex items-center justify-between rounded-md border border-gray-300 px-3 py-2 has-checked:bg-gray-100 has-checked:border-gray-500">
+                    <div key={addon.name} className="flex items-center justify-between rounded-md border border-gray-300 px-3 py-2 md:py-4 md:px-6 has-checked:bg-gray-100 has-checked:border-gray-500">
                         <div className="flex gap-4 items-center">
                             <label htmlFor={addon.name} 
                                 className="w-[20px] h-[20px] rounded-sm border border-gray-400 has-checked:bg-purple-900 flex items-center justify-center"

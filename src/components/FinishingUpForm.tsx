@@ -13,7 +13,7 @@ export const FinishingUpForm = () => {
       return total;
     }
     return (
-      <div className=''>
+      <div className='md:mt-4'>
         <div className='bg-gray-100 p-4 rounded-md flex flex-col gap-4'>
           <div>
             <div className='flex justify-between items-center mb-2'>

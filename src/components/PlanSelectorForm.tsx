@@ -13,11 +13,11 @@ export const PlanSelectorForm = () => {
     
     
     return (  
-            <div className=''>
-                <div className='flex flex-col gap-3'>
+            <div className='w-full md:mt-6'>
+                <div className='flex flex-col gap-3 md:flex-row'>
                     {
                     plans.map((plan, index)=>(
-                        <label htmlFor={plan.name} key={plan.name} className='flex  gap-4 p-4 border border-gray-300 rounded-lg has-checked:border-gray-800 has-checked:bg-gray-100' >
+                        <label htmlFor={plan.name} key={plan.name} className='flex gap-4 p-4 border border-gray-300 rounded-lg has-checked:border-gray-800 has-checked:bg-gray-100 md:flex-col md:gap-8 md:grow' >
                             <input type="radio" name='plan' id={plan.name} className='hidden' defaultChecked={ curPlan.name==plan.name || (index==0 && !curPlan.name) } onChange={()=>setPlanSelected(plan)}/>
                             <figure>
                                 <img src={plan.icon} alt="icon of plan" />
