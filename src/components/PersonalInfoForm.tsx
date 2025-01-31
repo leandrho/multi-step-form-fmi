@@ -1,6 +1,7 @@
 
 import { forwardRef, useContext, useImperativeHandle, useRef, useState } from "react"
 import { MultiStepContext } from "../context/MultiStepsProvider";
+import { InputInfo } from './InputInfo';
 
 export const PersonalInfoForm = forwardRef(({}, ref) => {
     const {personalInfo, setPersonInfo} = useContext(MultiStepContext);
@@ -50,55 +51,9 @@ export const PersonalInfoForm = forwardRef(({}, ref) => {
     }    
     return (
         <div className="flex flex-col gap-4 md:mt-6">        
-            <div className="parent">
-                <div className="flex justify-between items-center">
-                    <label htmlFor="person-name" className="text-sm text-(--Marine-blue)">Name</label>{/*'need to use useID in the input field if you want to re-use the component..'*/}
-                    {
-                        errors.name && <p className="text-(--Strawberry-red) text-xs font-medium">This field is required</p>
-                    }
-                </div>
-                <input 
-                    ref={nameRef}
-                    id="person-name" 
-                    type="text" 
-                    placeholder="e.g. Stephen King" 
-                    className=" mt-1 text-(--Marine-blue) block w-full font-medium outline outline-(--Light-gray) hover:outline-(--Purplish-blue) focus:outline-(--Purplish-blue)  rounded-sm px-4 py-2 placeholder:text-(--Cool-gray) placeholder:text-[15px]"
-                    value={personalInfo.name}
-                    onChange={(e)=>handleChange(e)}
-                />
-            </div>
-            <div className="parent">
-                <div className="flex justify-between items-center">
-                    <label htmlFor="person-email" className="text-sm text-(--Marine-blue)">Email Address</label>{/*'need to use useID in the input field if you want to re-use the component..'*/}
-                        {
-                            errors.email ? <p className="text-(--Strawberry-red) text-xs font-medium">This field is required</p> :''
-                        }
-                </div>
-                <input id="person-email" 
-                    ref={emailRef}
-                    type="email" 
-                    placeholder="e.g. stephenking@lorem.com" 
-                    className="mt-1 text-(--Marine-blue) block w-full font-medium outline outline-(--Light-gray) hover:outline-(--Purplish-blue) focus:outline-(--Purplish-blue)   rounded-sm px-4 py-2 placeholder:text-(--Cool-gray) placeholder:text-[15px]"
-                    value={personalInfo.email}
-                    onChange={(e)=>handleChange(e)}
-                />
-            </div>
-            <div className="parent">
-                <div className="flex justify-between items-center">
-                <label htmlFor="person-phone" className="text-sm text-(--Marine-blue)">Phone Number</label>{/*'need to use useID in the input field if you want to re-use the component..'*/}
-                        {
-                            errors.phone ? <p className="text-(--Strawberry-red) text-xs font-medium">This field is required</p>:''
-                        }
-                </div>
-                <input id="person-phone"
-                    ref={phoneRef} 
-                    type="text" 
-                    placeholder="e.g. +1 234 567 890" 
-                    className="mt-1 text-(--Marine-blue) block w-full font-medium outline outline-(--Light-gray) hover:outline-(--Purplish-blue) focus:outline-(--Purplish-blue)  rounded-sm px-4 py-2 placeholder:text-(--Cool-gray) placeholder:text-[15px]"
-                    value={personalInfo.phone}
-                    onChange={(e)=>handleChange(e)}
-                />
-            </div>
+            <InputInfo id={'person-name'} refInput={nameRef} label={'Name'} type="text" value={personalInfo.name} handleChange={handleChange} error={errors.name}/>
+            <InputInfo id={'person-email'} refInput={emailRef} label={'Email Address'} type="email" value={personalInfo.email} handleChange={handleChange} error={errors.email}/>
+            <InputInfo id={'person-phone'} refInput={phoneRef} label={'Phone number'} type="text" value={personalInfo.phone} handleChange={handleChange} error={errors.phone}/>
         </div>
     )
 });
