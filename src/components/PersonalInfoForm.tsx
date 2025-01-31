@@ -2,10 +2,7 @@
 import { forwardRef, useContext, useImperativeHandle, useRef, useState } from "react"
 import { MultiStepContext } from "../context/MultiStepsProvider";
 
-type PersonalInfoFormProps = {
-
-}
-export const PersonalInfoForm = forwardRef(({  } :PersonalInfoFormProps, ref) => {
+export const PersonalInfoForm = forwardRef(({}, ref) => {
     const {personalInfo, setPersonInfo} = useContext(MultiStepContext);
     const [errors, setErrors ] = useState({name:false, email: false, phone:false})
     const nameRef = useRef<HTMLInputElement>(null);
@@ -16,12 +13,10 @@ export const PersonalInfoForm = forwardRef(({  } :PersonalInfoFormProps, ref) =>
         let ret :boolean = true;
         let errs = {name:false, email: false, phone: false};
         if(nameRef.current && nameRef.current.value==''){
-            console.log('Error name')
             errs = {...errs, name:true};
             ret=false;
         }
         if(emailRef.current && emailRef.current.value==''){
-            console.log('Error email')
             errs = {...errs, email:true};
             ret=false;
         }

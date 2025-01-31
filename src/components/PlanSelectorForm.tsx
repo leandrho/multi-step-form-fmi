@@ -10,8 +10,7 @@ export const PlanSelectorForm = () => {
         if(curPlan.name=='')//el plan del state debe poder ser null, para evitar la comparacion con name vacio..
             setPlanSelected(plans[0])
     }, [])
-    
-    
+
     return (  
             <div className='w-full md:mt-6'>
                 <div className='flex flex-col gap-4 md:flex-row'>
